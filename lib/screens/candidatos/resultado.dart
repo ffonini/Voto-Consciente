@@ -1,3 +1,4 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import '../../core/rotas/rotas.dart';
 
@@ -5,7 +6,7 @@ class TelaResultado extends StatelessWidget {
   const TelaResultado({super.key});
 
   static const Color corPrimeiroCandidato = Color(0xFF087F5B); //cor do primeiro candidato selecionado
-  static const Color corSegundoCandidato = Color(0xFFE9B949); //cor do primeiro candidato selecionado
+  static const Color corSegundoCandidato = Color(0xFFE9B949); //cor do segundo candidato selecionado
 
   static const Color _azulPrincipal = Color(0xFF1F3A5F);
   static const Color _fundo = Color(0xFFF7F9FC);
@@ -20,7 +21,7 @@ class TelaResultado extends StatelessWidget {
     'Transporte',
     'Emprego',
     'Meio ambiente',
-    'Combate à corrupção',
+    'Anticorrupção',
     'Moradia',
   ];
 
@@ -38,19 +39,17 @@ class TelaResultado extends StatelessWidget {
       );
     }
 
-    final Map<String, dynamic> argumentos = //argumento do compaaracao.dart recebidos em map
+    final Map<String, dynamic> argumentos = 
         {
       'primeiroCandidato': argumentosRecebidos['primeiroCandidato'],
       'segundoCandidato': argumentosRecebidos['segundoCandidato'],
     };
 
-    //converte em mapas objetos recebidos
     final Map<String, dynamic> primeiroCandidato =
         Map<String, dynamic>.from(argumentos['primeiroCandidato'] as Map);
     final Map<String, dynamic> segundoCandidato =
         Map<String, dynamic>.from(argumentos['segundoCandidato'] as Map);
 
-    // Recupera o mapa de indicadores do primeiro candidato.
     final Map<String, dynamic> indicesPrimeiro =
         converterIndices(primeiroCandidato['indices']);
     final Map<String, dynamic> indicesSegundo =
@@ -82,7 +81,7 @@ class TelaResultado extends StatelessWidget {
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [ //botão que retorna para comparacao.dart
+                        children: [
                           IconButton.filledTonal(
                             tooltip: 'Voltar para comparação',
                             onPressed: () {
@@ -116,10 +115,28 @@ class TelaResultado extends StatelessWidget {
                               height: 1.5,
                             ),
                           ),
-                          const SizedBox(height: 24), //card com info dos candidatos
+                          const SizedBox(height: 24),
                           _cardResumoCandidatos(
                             primeiroCandidato: primeiroCandidato,
                             segundoCandidato: segundoCandidato,
+                          ),
+                          const SizedBox(height: 20),
+                          _GraficoRadar( 
+                            temas: _temas,
+                            nomePrimeiro:
+                                primeiroCandidato['nome']?.toString() ??
+                                    'Primeiro candidato',
+                            nomeSegundo:
+                                segundoCandidato['nome']?.toString() ??
+                                    'Segundo candidato',
+                            valoresPrimeiro: _temas
+                                .map((t) => converterParaInteiro(
+                                    indicesPrimeiro[t]))
+                                .toList(),
+                            valoresSegundo: _temas
+                                .map((t) => converterParaInteiro(
+                                    indicesSegundo[t]))
+                                .toList(),
                           ),
                           const SizedBox(height: 28),
                           const Text(
@@ -141,7 +158,7 @@ class TelaResultado extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 18),
-                          ..._temas.map( //percorre pelos temas e cria um card de comparação para cada um
+                          ..._temas.map( 
                             (tema) {
                               final int valorPrimeiro =
                                   converterParaInteiro(indicesPrimeiro[tema]);
@@ -198,7 +215,7 @@ class TelaResultado extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 24),
-                          SizedBox( //btn para voltar e selecionar outros dois candidatos
+                          SizedBox( 
                             width: double.infinity,
                             height: 56,
                             child: ElevatedButton.icon(
@@ -235,9 +252,9 @@ class TelaResultado extends StatelessWidget {
             },
           ),
         ),
-        bottomNavigationBar: NavigationBar( //barra inferior
+        bottomNavigationBar: NavigationBar( 
           selectedIndex: 1,
-          onDestinationSelected: (indice) { //navegação ao clicar em um item da barra inferior
+          onDestinationSelected: (indice) { 
             if (indice == 0) {
               Navigator.pushReplacementNamed(context, RotasApp.home);
             }
@@ -306,7 +323,7 @@ class TelaResultado extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded( //primeiro eleitor selecionado
+              Expanded( //primeiro candidato selecionado
                 child: candidatoComparado(
                   nome: primeiroCandidato['nome']?.toString() ?? 'Candidato',
                   partido: primeiroCandidato['partido']?.toString() ?? '',
@@ -335,7 +352,7 @@ class TelaResultado extends StatelessWidget {
                   ),
                 ),
               ),
-              Expanded( //segundo eleitor selecionado
+              Expanded( 
                 child: candidatoComparado(
                   nome: segundoCandidato['nome']?.toString() ?? 'Candidato',
                   partido: segundoCandidato['partido']?.toString() ?? '',
@@ -376,7 +393,7 @@ class TelaResultado extends StatelessWidget {
   }) {
     return Column(
       children: [
-        Container( //responsável pela borda colorida
+        Container( 
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
@@ -388,8 +405,8 @@ class TelaResultado extends StatelessWidget {
                     foto,
                     width: 86,
                     height: 86,
-                    fit: BoxFit.cover, //faz a foto ocupar o círculo sem mudar a imagem
-                    errorBuilder: ( //se não tiver img, mostra icon de pessoa
+                    fit: BoxFit.cover, 
+                    errorBuilder: ( 
                       context,
                       erro,
                       stackTrace,
@@ -447,7 +464,7 @@ class TelaResultado extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container( //círculo com a cor do candidato
+        Container( 
           width: 11,
           height: 11,
           decoration: BoxDecoration(
@@ -492,7 +509,7 @@ class TelaResultado extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text( //nome do tema
+          Text( 
             tema,
             style: const TextStyle(
               color: _azulPrincipal,
@@ -501,13 +518,13 @@ class TelaResultado extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 17),
-          barraCandidato( //barra primeiro candidato
+          barraCandidato( 
             nome: nomePrimeiro,
             valor: valorPrimeiro,
             cor: corPrimeiroCandidato,
           ),
           const SizedBox(height: 16),
-          barraCandidato( //barra segundo candidato
+          barraCandidato( 
             nome: nomeSegundo,
             valor: valorSegundo,
             cor: corSegundoCandidato,
@@ -517,12 +534,12 @@ class TelaResultado extends StatelessWidget {
     );
   }
 
-  Widget barraCandidato({ //cria a barra horizontal do candidato
+  Widget barraCandidato({ 
     required String nome,
     required int valor,
     required Color cor,
   }) {
-    final int valorSeguro = valor.clamp(0, 100); //percentual entre 0 a 100
+    final int valorSeguro = valor.clamp(0, 100); 
     final Color corTexto = cor == corSegundoCandidato ? _amareloEscuro : cor;
 
     return Column(
@@ -535,7 +552,7 @@ class TelaResultado extends StatelessWidget {
               decoration: BoxDecoration(color: cor, shape: BoxShape.circle),
             ),
             const SizedBox(width: 8),
-            Expanded( //nome candidato
+            Expanded( 
               child: Text(
                 nome,
                 maxLines: 1,
@@ -548,7 +565,7 @@ class TelaResultado extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 8),
-            Text( //percentual do candidato
+            Text( 
               '$valorSeguro%',
               style: TextStyle(
                 color: corTexto,
@@ -561,7 +578,8 @@ class TelaResultado extends StatelessWidget {
         const SizedBox(height: 9),
         LayoutBuilder(
           builder: (context, constraints) {
-            final double larguraPreenchida = constraints.maxWidth * (valorSeguro / 100); //cálculo do preenchimento da barra
+            final double larguraPreenchida =
+                constraints.maxWidth * (valorSeguro / 100); 
             return Semantics(
               label: '$nome: $valorSeguro por cento',
               child: Container(
@@ -599,10 +617,10 @@ class TelaResultado extends StatelessWidget {
           entry.key.toString(): entry.value,
       };
     }
-    return {}; //retorna um mapa vazio caso não existam dados
+    return {}; 
   }
 
-  int converterParaInteiro(dynamic valor) { //converter valores para int
+  int converterParaInteiro(dynamic valor) { 
     if (valor is int) {
       return valor;
     }
@@ -615,7 +633,7 @@ class TelaResultado extends StatelessWidget {
     return 0;
   }
 
-  Widget telaErro( //mostra se os candiddatos não forem recebidos corretamente 
+  Widget telaErro(
     BuildContext context,
     String mensagem,
   ) {
@@ -670,7 +688,7 @@ class TelaResultado extends StatelessWidget {
                       height: 52,
                       child: ElevatedButton(
                         onPressed: () {
-                          if (Navigator.canPop(context)) { //direciona pra tela anterior = comparacao.dart
+                          if (Navigator.canPop(context)) { 
                             Navigator.pop(context);
                           } else {
                             Navigator.pushReplacementNamed(
@@ -698,6 +716,202 @@ class TelaResultado extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _GraficoRadar extends StatefulWidget {
+  const _GraficoRadar({
+    required this.temas,
+    required this.nomePrimeiro,
+    required this.nomeSegundo,
+    required this.valoresPrimeiro,
+    required this.valoresSegundo,
+  });
+
+  final List<String> temas;
+  final String nomePrimeiro;
+  final String nomeSegundo;
+  final List<int> valoresPrimeiro;
+  final List<int> valoresSegundo;
+
+  @override
+  State<_GraficoRadar> createState() => _GraficoRadarState();
+}
+
+class _GraficoRadarState extends State<_GraficoRadar> {
+  int? _candidatoSelecionado; 
+  int? _temaSelecionado; 
+
+  List<RadarEntry> _entradas(List<int> valores) => valores
+      .map((v) => RadarEntry(value: v.clamp(0, 100).toDouble()))
+      .toList();
+
+  void _aoTocar(FlTouchEvent evento, RadarTouchResponse? resposta) {
+    if (evento is! FlTapUpEvent) return; 
+
+    final spot = resposta?.touchedSpot;
+
+    setState(() {
+      if (spot == null || spot.touchedDataSetIndex == 0) {
+        _candidatoSelecionado = null;
+        _temaSelecionado = null;
+        return;
+      }
+      _candidatoSelecionado = spot.touchedDataSetIndex - 1;
+      _temaSelecionado = spot.touchedRadarEntryIndex;
+    });
+  }
+
+  Widget _infoSelecionado() {
+    final int? candidato = _candidatoSelecionado;
+    final int? tema = _temaSelecionado;
+
+    if (candidato == null || tema == null) {
+      return const Text(
+        'Toque em um ponto do gráfico para ver o valor.',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          color: TelaResultado._textoSecundario,
+          fontSize: 12,
+        ),
+      );
+    }
+
+    final bool primeiro = candidato == 0;
+    final String nome = primeiro ? widget.nomePrimeiro : widget.nomeSegundo;
+    final int valor =
+        (primeiro ? widget.valoresPrimeiro : widget.valoresSegundo)[tema];
+    final Color cor = primeiro
+        ? TelaResultado.corPrimeiroCandidato
+        : TelaResultado.corSegundoCandidato;
+    final Color corTexto = primeiro
+        ? TelaResultado.corPrimeiroCandidato
+        : TelaResultado._amareloEscuro;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      decoration: BoxDecoration(
+        color: cor.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: cor, width: 1.5),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 10,
+            height: 10,
+            decoration: BoxDecoration(color: cor, shape: BoxShape.circle),
+          ),
+          const SizedBox(width: 8),
+          Flexible(
+            child: Text(
+              '$nome · ${widget.temas[tema]}',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                color: TelaResultado._azulPrincipal,
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
+          Text(
+            '$valor%',
+            style: TextStyle(
+              color: corTexto,
+              fontSize: 16,
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    const Color borda = TelaResultado._borda;
+    const Color azul = TelaResultado._azulPrincipal;
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: borda),
+      ),
+      child: Column(
+        children: [
+          AspectRatio(
+            aspectRatio: 1,
+            child: RadarChart(
+              RadarChartData(
+                radarShape: RadarShape.polygon, 
+                tickCount: 4,
+                ticksTextStyle:
+                    const TextStyle(color: Colors.transparent, fontSize: 0),
+                tickBorderData: const BorderSide(color: borda, width: 1),
+                gridBorderData: const BorderSide(color: borda, width: 1),
+                radarBorderData: const BorderSide(color: borda, width: 1.5),
+                titlePositionPercentageOffset: 0.14,
+                titleTextStyle: const TextStyle(
+                  color: azul,
+                  fontSize: 11,
+                  fontWeight: FontWeight.w600,
+                ),
+                getTitle: (index, angle) =>
+                    RadarChartTitle(text: widget.temas[index]),
+                radarTouchData: RadarTouchData(
+                  enabled: true,
+                  touchSpotThreshold: 24, 
+                  touchCallback: _aoTocar,
+                ),
+                dataSets: [
+                  RadarDataSet(
+                    fillColor: Colors.transparent,
+                    borderColor: Colors.transparent,
+                    entryRadius: 0,
+                    borderWidth: 0,
+                    dataEntries: List.generate(
+                      widget.temas.length,
+                      (_) => const RadarEntry(value: 100),
+                    ),
+                  ),
+                  RadarDataSet(
+                    fillColor:
+                        TelaResultado.corPrimeiroCandidato.withValues(alpha: 0.25),
+                    borderColor: TelaResultado.corPrimeiroCandidato,
+                    borderWidth: 2.5,
+                    entryRadius: 4,
+                    dataEntries: _entradas(widget.valoresPrimeiro),
+                  ),
+                  RadarDataSet(
+                    fillColor:
+                        TelaResultado.corSegundoCandidato.withValues(alpha: 0.25),
+                    borderColor: TelaResultado.corSegundoCandidato,
+                    borderWidth: 2.5,
+                    entryRadius: 4,
+                    dataEntries: _entradas(widget.valoresSegundo),
+                  ),
+                ],
+              ),
+              swapAnimationDuration: const Duration(milliseconds: 600),
+            ),
+          ),
+          const SizedBox(height: 12),
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 200),
+            child: KeyedSubtree(
+              key: ValueKey('$_candidatoSelecionado-$_temaSelecionado'),
+              child: _infoSelecionado(),
+            ),
+          ),
+        ],
       ),
     );
   }
