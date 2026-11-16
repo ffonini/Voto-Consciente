@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
 import '../../core/rotas/rotas.dart';
 
-class TelaComparacao extends StatefulWidget { //StatefulWidget é usado pois a tela fica mutável de acordo com as ações do usuário
+class TelaComparacao extends StatefulWidget {
+  //StatefulWidget é usado pois a tela fica mutável de acordo com as ações do usuário
   const TelaComparacao({super.key});
 
   @override
@@ -17,102 +19,106 @@ class _TelaComparacaoState extends State<TelaComparacao> {
   static const Color _verdeClaro = Color(0xFFE8F5EF);
 
   final List<Map<String, dynamic>> candidatos = [
-  {
-    "nome": "Lula",
-    "partido": "PT",
-    "foto": "assets/img/candidatos/lula.jpg",
-    "indices": {
-      "Saúde": 78,
-      "Educação": 84,
-      "Segurança": 61,
-      "Transporte": 70,
-      "Emprego": 79,
-      "Meio ambiente": 75,
-      "Combate à corrupção": 58,
-      "Moradia": 82,
+    {
+      "nome": "Lula",
+      "partido": "PT",
+      "foto": "assets/img/lula.png",
+      "indices": {
+        "Saúde": 78,
+        "Educação": 84,
+        "Segurança": 61,
+        "Transporte": 70,
+        "Emprego": 79,
+        "Meio ambiente": 75,
+        "Combate à corrupção": 58,
+        "Moradia": 82,
+      },
     },
-  },
-  {
-    "nome": "Flávio Bolsonaro",
-    "partido": "PL",
-    "foto": "assets/img/candidatos/flavio_bolsonaro.jpg",
-    "indices": {
-      "Saúde": 65,
-      "Educação": 58,
-      "Segurança": 88,
-      "Transporte": 62,
-      "Emprego": 77,
-      "Meio ambiente": 49,
-      "Combate à corrupção": 68,
-      "Moradia": 56,
+    {
+      "nome": "Flávio Bolsonaro",
+      "partido": "PL",
+      "foto": "assets/img/bolsonaro.png",
+      "indices": {
+        "Saúde": 65,
+        "Educação": 58,
+        "Segurança": 88,
+        "Transporte": 62,
+        "Emprego": 77,
+        "Meio ambiente": 49,
+        "Combate à corrupção": 68,
+        "Moradia": 56,
+      },
     },
-  },
-  {
-    "nome": "Renan Santos",
-    "partido": "Missão",
-    "foto": "assets/img/candidatos/renan_santos.jpg",
-    "indices": {
-      "Saúde": 62,
-      "Educação": 74,
-      "Segurança": 79,
-      "Transporte": 55,
-      "Emprego": 83,
-      "Meio ambiente": 57,
-      "Combate à corrupção": 88,
-      "Moradia": 52,
+    {
+      "nome": "Renan Santos",
+      "partido": "Missão",
+      "foto": "assets/img/renan.png",
+      "indices": {
+        "Saúde": 62,
+        "Educação": 74,
+        "Segurança": 79,
+        "Transporte": 55,
+        "Emprego": 83,
+        "Meio ambiente": 57,
+        "Combate à corrupção": 88,
+        "Moradia": 52,
+      },
     },
-  },
-  {
-    "nome": "Augusto Cury",
-    "partido": "Avante",
-    "foto": "assets/img/candidatos/augusto_cury.jpg",
-    "indices": {
-      "Saúde": 80,
-      "Educação": 92,
-      "Segurança": 54,
-      "Transporte": 48,
-      "Emprego": 69,
-      "Meio ambiente": 65,
-      "Combate à corrupção": 63,
-      "Moradia": 60,
+    {
+      "nome": "Augusto Cury",
+      "partido": "Avante",
+      "foto": "assets/img/cury.png",
+      "indices": {
+        "Saúde": 80,
+        "Educação": 92,
+        "Segurança": 54,
+        "Transporte": 48,
+        "Emprego": 69,
+        "Meio ambiente": 65,
+        "Combate à corrupção": 63,
+        "Moradia": 60,
+      },
     },
-  },
-  {
-    "nome": "Romeu Zema",
-    "partido": "Novo",
-    "foto": "assets/img/candidatos/romeu_zema.jpg",
-    "indices": {
-      "Saúde": 68,
-      "Educação": 72,
-      "Segurança": 76,
-      "Transporte": 75,
-      "Emprego": 90,
-      "Meio ambiente": 61,
-      "Combate à corrupção": 81,
-      "Moradia": 51,
+    {
+      "nome": "Romeu Zema",
+      "partido": "Novo",
+      "foto": "assets/img/zema.png",
+      "indices": {
+        "Saúde": 68,
+        "Educação": 72,
+        "Segurança": 76,
+        "Transporte": 75,
+        "Emprego": 90,
+        "Meio ambiente": 61,
+        "Combate à corrupção": 81,
+        "Moradia": 51,
+      },
     },
-  },
-  {
-    "nome": "Ronaldo Caiado",
-    "partido": "PSD",
-    "foto": "assets/img/candidatos/ronaldo_caiado.jpg",
-    "indices": {
-      "Saúde": 86,
-      "Educação": 67,
-      "Segurança": 84,
-      "Transporte": 64,
-      "Emprego": 75,
-      "Meio ambiente": 59,
-      "Combate à corrupção": 70,
-      "Moradia": 58,
+    {
+      "nome": "Ronaldo Caiado",
+      "partido": "PSD",
+      "foto": "assets/img/caiado.png",
+      "indices": {
+        "Saúde": 86,
+        "Educação": 67,
+        "Segurança": 84,
+        "Transporte": 64,
+        "Emprego": 75,
+        "Meio ambiente": 59,
+        "Combate à corrupção": 70,
+        "Moradia": 58,
+      },
     },
-  },
-];
+  ];
 
-  final List<int> candidatosSelecionados = []; //array que guarda os candidatos selecionados pelo usuário
+  final List<int> candidatosSelecionados =
+      []; //array que guarda os candidatos selecionados pelo usuário
 
-  void selecionarCandidato(int indice) { //seleciona ou remove candidato
-    final bool candidatoJaSelecionado = candidatosSelecionados.contains(indice); //vê se o candidato clicado já está selecionado
+  void selecionarCandidato(int indice) {
+    //seleciona ou remove candidato
+    final bool candidatoJaSelecionado = candidatosSelecionados.contains(
+      indice,
+    ); //vê se o candidato clicado já está selecionado
 
     if (!candidatoJaSelecionado && candidatosSelecionados.length == 2) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -136,7 +142,8 @@ class _TelaComparacaoState extends State<TelaComparacao> {
   }
 
   void compararCandidatos() {
-    if (candidatosSelecionados.length != 2) { //regra para selecionar extamente dois candidatos
+    if (candidatosSelecionados.length != 2) {
+      //regra para selecionar extamente dois candidatos
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text("Selecione exatamente 2 candidatos."),
@@ -146,10 +153,13 @@ class _TelaComparacaoState extends State<TelaComparacao> {
       return;
     }
 
-    final Map<String, dynamic> primeiroCandidato = candidatos[candidatosSelecionados[0]]; //primeiro índice=primeiro candidato da lista
-    final Map<String, dynamic> segundoCandidato = candidatos[candidatosSelecionados[1]]; //segundo índice=segundo candidato da lista
+    final Map<String, dynamic> primeiroCandidato =
+        candidatos[candidatosSelecionados[0]]; //primeiro índice=primeiro candidato da lista
+    final Map<String, dynamic> segundoCandidato =
+        candidatos[candidatosSelecionados[1]]; //segundo índice=segundo candidato da lista
 
-    Navigator.pushNamed( //evia os dois mapas completos para resultado.dart
+    Navigator.pushNamed(
+      //evia os dois mapas completos para resultado.dart
       context,
       RotasApp.resultado,
       arguments: {
@@ -246,17 +256,13 @@ class _TelaComparacaoState extends State<TelaComparacao> {
                   vertical: 7,
                 ),
                 decoration: BoxDecoration(
-                  color: podeComparar
-                      ? _verdeClaro
-                      : const Color(0xFFE8EEF6),
+                  color: podeComparar ? _verdeClaro : const Color(0xFFE8EEF6),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
                   "$quantidade/2 selecionados", //contador de selecionados
                   style: TextStyle(
-                    color: podeComparar
-                        ? _verdePrincipal
-                        : _azulPrincipal,
+                    color: podeComparar ? _verdePrincipal : _azulPrincipal,
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
                   ),
@@ -280,12 +286,14 @@ class _TelaComparacaoState extends State<TelaComparacao> {
     );
   }
 
-  Widget _gradeCandidatos(double larguraDisponivel) { //permite que a grade ocupe o espaço disponível na tela
+  Widget _gradeCandidatos(double larguraDisponivel) {
+    //permite que a grade ocupe o espaço disponível na tela
     final int colunas = larguraDisponivel >= 560 ? 3 : 2;
     final double fonteEscalada = MediaQuery.textScalerOf(context).scale(14);
     final double alturaCard = fonteEscalada > 20 ? 244 : 205;
 
-    return GridView.builder( //grade com 6 candidatos
+    return GridView.builder(
+      //grade com 6 candidatos
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -299,7 +307,9 @@ class _TelaComparacaoState extends State<TelaComparacao> {
       itemBuilder: (context, indice) {
         final candidato = candidatos[indice];
         final bool selecionado = candidatosSelecionados.contains(indice);
-        final bool bloqueado = candidatosSelecionados.length == 2 && !selecionado; //se tiver dois selecionados, o resto é bloqueado
+        final bool bloqueado =
+            candidatosSelecionados.length == 2 &&
+            !selecionado; //se tiver dois selecionados, o resto é bloqueado
 
         return cardCandidato(
           indice: indice,
@@ -313,15 +323,14 @@ class _TelaComparacaoState extends State<TelaComparacao> {
     );
   }
 
-  Widget _botaoComparar() { //btn comparar
+  Widget _botaoComparar() {
+    //btn comparar
     final bool podeComparar = candidatosSelecionados.length == 2;
 
     return Container(
       decoration: const BoxDecoration(
         color: _fundo,
-        border: Border(
-          top: BorderSide(color: Color(0xFFE7EBF1)),
-        ),
+        border: Border(top: BorderSide(color: Color(0xFFE7EBF1))),
       ),
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),
       child: Center(
@@ -334,7 +343,9 @@ class _TelaComparacaoState extends State<TelaComparacao> {
               onPressed: podeComparar ? compararCandidatos : null,
               style: ElevatedButton.styleFrom(
                 backgroundColor: _verdePrincipal, //cor btn habilitado
-                disabledBackgroundColor: const Color(0xFFD7DEE5), //cor btn desabilitado
+                disabledBackgroundColor: const Color(
+                  0xFFD7DEE5,
+                ), //cor btn desabilitado
                 foregroundColor: Colors.white,
                 disabledForegroundColor: const Color(0xFF617184),
                 elevation: 0,
@@ -349,9 +360,7 @@ class _TelaComparacaoState extends State<TelaComparacao> {
                 size: 21,
               ),
               label: Text(
-                podeComparar
-                    ? "Comparar candidatos"
-                    : "Selecione 2 candidatos",
+                podeComparar ? "Comparar candidatos" : "Selecione 2 candidatos",
                 style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w700,
@@ -365,7 +374,8 @@ class _TelaComparacaoState extends State<TelaComparacao> {
   }
 
   Widget _barraNavegacao() {
-    return NavigationBar( //barra inferior
+    return NavigationBar(
+      //barra inferior
       selectedIndex: 1,
       onDestinationSelected: (indice) {
         if (indice == 0) {
@@ -468,10 +478,7 @@ class _TelaComparacaoState extends State<TelaComparacao> {
         top: false,
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: [
-            _botaoComparar(),
-            _barraNavegacao(),
-          ],
+          children: [_botaoComparar(), _barraNavegacao()],
         ),
       ),
     );
@@ -493,7 +500,8 @@ class _TelaComparacaoState extends State<TelaComparacao> {
         color: Colors.transparent,
         borderRadius: BorderRadius.circular(20),
         child: InkWell(
-          onTap: bloqueado //fica bloqueado se os dois candidatos ja forem escolhidos
+          onTap:
+              bloqueado //fica bloqueado se os dois candidatos ja forem escolhidos
               ? () {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -509,7 +517,9 @@ class _TelaComparacaoState extends State<TelaComparacao> {
               : () => selecionarCandidato(indice),
           borderRadius: BorderRadius.circular(20),
           child: AnimatedOpacity(
-            duration: const Duration(milliseconds: 200), //candidatos bloqueados ficam levemente apagados
+            duration: const Duration(
+              milliseconds: 200,
+            ), //candidatos bloqueados ficam levemente apagados
             opacity: bloqueado ? 0.48 : 1,
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
@@ -534,24 +544,30 @@ class _TelaComparacaoState extends State<TelaComparacao> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Stack( //permite colocar o ícone de confirmação sobre a foto do candidato
+                  Stack(
+                    //permite colocar o ícone de confirmação sobre a foto do candidato
                     clipBehavior: Clip.none,
                     children: [
-                      AnimatedContainer( //borda muda
+                      AnimatedContainer(
+                        //borda muda
                         duration: const Duration(milliseconds: 200),
                         padding: const EdgeInsets.all(4),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          border: Border.all( //borda verde nos candidatos selecionados 
+                          border: Border.all(
+                            //borda verde nos candidatos selecionados
                             color: selecionado
                                 ? _verdePrincipal
                                 : const Color(0xFFE8EEF6),
                             width: 3,
                           ),
-                          boxShadow: selecionado //sombra verde suave quando selecionado
+                          boxShadow:
+                              selecionado //sombra verde suave quando selecionado
                               ? [
                                   BoxShadow(
-                                    color: _verdePrincipal.withValues(alpha: 0.16),
+                                    color: _verdePrincipal.withValues(
+                                      alpha: 0.16,
+                                    ),
                                     blurRadius: 10,
                                     spreadRadius: 1,
                                   ),
@@ -564,22 +580,24 @@ class _TelaComparacaoState extends State<TelaComparacao> {
                             width: 78,
                             height: 78,
                             fit: BoxFit.cover, //faz a imagem preencher o círculo sem deformação
-                            errorBuilder: ( //se não tiver img, fica um icon de uma pessoa
-                              context,
-                              erro,
-                              stackTrace,
-                            ) {
-                              return Container(
-                                width: 78,
-                                height: 78,
-                                color: const Color(0xFFE8EEF6),
-                                child: const Icon(
-                                  Icons.person_outline_rounded,
-                                  color: _azulPrincipal,
-                                  size: 38,
-                                ),
-                              );
-                            },
+                            errorBuilder:
+                                (
+                                  //se não tiver img, fica um icon de uma pessoa
+                                  context,
+                                  erro,
+                                  stackTrace,
+                                ) {
+                                  return Container(
+                                    width: 78,
+                                    height: 78,
+                                    color: const Color(0xFFE8EEF6),
+                                    child: const Icon(
+                                      Icons.person_outline_rounded,
+                                      color: _azulPrincipal,
+                                      size: 38,
+                                    ),
+                                  );
+                                },
                           ),
                         ),
                       ),
@@ -600,7 +618,8 @@ class _TelaComparacaoState extends State<TelaComparacao> {
                     ],
                   ),
                   const SizedBox(height: 12),
-                  Text( //nome candidato
+                  Text(
+                    //nome candidato
                     nome,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -613,7 +632,8 @@ class _TelaComparacaoState extends State<TelaComparacao> {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  Text( //partido
+                  Text(
+                    //partido
                     partido,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
